@@ -1,5 +1,5 @@
 import React from "react";
-import App from "./App.tsx";
+import Home from "./pages/Home.tsx";
 import * as ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
@@ -7,7 +7,7 @@ import "./index.css";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Home />,
   },
 ]);
 
