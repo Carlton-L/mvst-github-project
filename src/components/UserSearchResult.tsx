@@ -10,6 +10,7 @@ const UserSearchResult = ({ user }: Props) => {
           <div className="flex rounded-full bg-primary size-16 mr-3 flex-shrink-0"></div>
           <div className="flex flex-col">
             <div className="flex flex-col">
+              {/* TODO: Create function to separate query string(s) from string results and format with primary color span */}
               <h4 className="font-bold">{user.node.name}</h4>
               <h5 className="text-grey">{user.node.login}</h5>
               <p className="text-sm">{user.node.bio}</p>

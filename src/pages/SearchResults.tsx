@@ -23,7 +23,7 @@ const SearchResults = () => {
     <main className="flex flex-col items-center justify-start grow min-h-full">
       <h3 className="flex mt-3.5 text-xl">
         Users with &nbsp;
-        <span className="text-primary inline-block">{query}</span>
+        <span className="text-primary inline-block">"{query}"</span>
       </h3>
       <ul>
         {/* TODO: Replace "any" type */}
