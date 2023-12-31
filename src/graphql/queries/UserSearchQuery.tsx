@@ -15,6 +15,11 @@ const USER_SEARCH_QUERY = gql`
             id
             avatarUrl
             bio
+            email
+            pronouns
+            websiteUrl
+            url
+            company
             followers {
               totalCount
             }
@@ -23,6 +28,17 @@ const USER_SEARCH_QUERY = gql`
             name
             repositories {
               totalCount
+            }
+            status {
+              message
+              emoji
+            }
+            socialAccounts(first: 20) {
+              nodes {
+                displayName
+                provider
+                url
+              }
             }
           }
         }

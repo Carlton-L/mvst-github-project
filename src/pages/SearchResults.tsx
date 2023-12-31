@@ -1,21 +1,14 @@
 import { useQuery } from "@apollo/client";
-import { useLocation } from "react-router-dom";
-import { useMemo } from "react";
+import { useParams } from "react-router-dom";
 
 import UserSearchResult from "../components/UserSearchResult";
 import { USER_SEARCH_QUERY } from "../graphql/queries/UserSearchQuery";
 
-const useQueryParam = () => {
-  const { search } = useLocation();
-
-  return useMemo(() => new URLSearchParams(search), [search]);
-};
-
 const SearchResults = () => {
-  let query = useQueryParam();
+  const { query } = useParams();
 
   const { loading, error, data } = useQuery(USER_SEARCH_QUERY, {
-    variables: { query: "foo", cursor: null },
+    variables: { query: query, cursor: null },
   });
 
   if (loading) {
@@ -30,7 +23,7 @@ const SearchResults = () => {
     <main className="flex flex-col items-center justify-start grow min-h-full">
       <h3 className="flex mt-3.5 text-xl">
         Users with &nbsp;
-        <span className="text-primary inline-block">{query.get("search")}</span>
+        <span className="text-primary inline-block">{query}</span>
       </h3>
       <ul>
         {/* TODO: Replace "any" type */}
