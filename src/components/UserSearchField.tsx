@@ -1,10 +1,5 @@
 const UserSearchField = () => {
-  return (
-    <div>
-      dgadsg
-      <input></input>
-    </div>
-  );
+  return <div></div>;
 };
 
 export default UserSearchField;
