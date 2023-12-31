@@ -1,3 +1,5 @@
+import UserSearchField from "./UserSearchField";
+
 const Header = () => {
   return (
     <header className="border-b border-white p-4 flex justify-between">
@@ -26,7 +28,9 @@ const Header = () => {
           </clipPath>
         </defs>
       </svg>
-      <div className="grow"></div>
+      <div className="grow">
+        <UserSearchField />
+      </div>
     </header>
   );
 };
