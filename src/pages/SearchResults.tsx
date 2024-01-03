@@ -19,6 +19,8 @@ const SearchResults = () => {
     return <p>Error: {error.message}</p>;
   }
 
+  console.log(data);
+
   return (
     <main className="flex flex-col items-center justify-start grow min-h-full">
       <h3 className="flex mt-3.5 text-xl">

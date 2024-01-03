@@ -7,6 +7,7 @@ const USER_SEARCH_QUERY = gql`
         startCursor
         hasNextPage
         endCursor
+        __typename
       }
       userCount
       edges {
@@ -15,34 +16,22 @@ const USER_SEARCH_QUERY = gql`
             id
             avatarUrl
             bio
-            email
-            pronouns
-            websiteUrl
-            url
-            company
             followers {
               totalCount
+              __typename
             }
             location
             login
             name
             repositories {
               totalCount
+              __typename
             }
-            status {
-              message
-              emoji
-            }
-            socialAccounts(first: 20) {
-              nodes {
-                displayName
-                provider
-                url
-              }
-            }
+            __typename
           }
         }
       }
+      __typename
     }
   }
 `;

@@ -21,12 +21,14 @@ const UserSearchResult = ({ user }: Props) => {
               ) : (
                 ""
               )}
-              {user.node.location && user.node.followers.totalCount ? (
+              {user.node.location &&
+              user.node.followers &&
+              user.node.followers.totalCount ? (
                 <div className="mx-4">|</div>
               ) : (
                 ""
               )}
-              {user.node.followers.totalCount ? (
+              {user.node.followers && user.node.followers.totalCount ? (
                 <div>Followers: {user.node.followers.totalCount}</div>
               ) : (
                 ""
