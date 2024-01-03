@@ -15,10 +15,22 @@ const UserSearchResult = ({ user }: Props) => {
               <h5 className="text-grey">{user.node.login}</h5>
               <p className="text-sm">{user.node.bio}</p>
             </div>
-            <div className="flex flex-row mt-4">
-              <div>Location: {user.node.location}</div>
-              <div className="mx-4">|</div>
-              <div>Followers: {user.node.followers.totalCount}</div>
+            <div className="flex flex-row mt-4 text-xs">
+              {user.node.location ? (
+                <div>Location: {user.node.location}</div>
+              ) : (
+                ""
+              )}
+              {user.node.location && user.node.followers.totalCount ? (
+                <div className="mx-4">|</div>
+              ) : (
+                ""
+              )}
+              {user.node.followers.totalCount ? (
+                <div>Followers: {user.node.followers.totalCount}</div>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>
