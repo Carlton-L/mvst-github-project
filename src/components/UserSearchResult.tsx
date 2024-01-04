@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { DetailedReactHTMLElement, createElement } from 'react';
 
 // FIXME: Add type for Apollo user query
-interface Props {
+interface UserSearchResultProps {
   user: any;
 }
 
@@ -38,7 +38,6 @@ const findAndWrap = (
        * Substring
        * Result of same function on string remaining after substring
        */
-      console.log(str);
       return [
         str.slice(0, lcStr.indexOf(lcSubstr)),
         str.slice(
@@ -66,7 +65,9 @@ const findAndWrap = (
   });
 };
 
-const UserSearchResult = ({ user }: Props) => {
+const UserSearchResult = ({
+  user,
+}: UserSearchResultProps): React.JSX.Element => {
   const { query = ' ' } = useParams();
   return (
     <li className="mt-3 flex flex-row rounded-3xl bg-grey-dark w-full justify-stretch">
