@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { DetailedReactHTMLElement, createElement } from 'react';
 
+// FIXME: Add type for Apollo user query
 interface Props {
   user: any;
 }
@@ -27,11 +28,9 @@ const findAndWrap = (
    * @param {0} str A string to search through
    * @param {1} substr A substring to search for
    */
-  // BUG: Found substrings are always lower case
   const split = (str: string, substr: string): Array<string> => {
     const lcStr = str.toLowerCase();
     const lcSubstr = substr.toLowerCase();
-    console.log(substr);
     if (lcStr.includes(lcSubstr)) {
       /**
        * Returns:
@@ -39,6 +38,7 @@ const findAndWrap = (
        * Substring
        * Result of same function on string remaining after substring
        */
+      console.log(str);
       return [
         str.slice(0, lcStr.indexOf(lcSubstr)),
         str.slice(
@@ -59,7 +59,7 @@ const findAndWrap = (
     // Check if index is even
     if ((i & 1) === 1) {
       // Create a React element with the passed in classes and child string
-      return createElement(wrapper, { className: classes }, substr);
+      return createElement(wrapper, { className: classes }, e);
     } else {
       return e;
     }
