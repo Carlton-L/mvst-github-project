@@ -1,10 +1,10 @@
-import { useQuery } from "@apollo/client";
-import { useParams } from "react-router-dom";
+import { useQuery } from '@apollo/client';
+import { useParams } from 'react-router-dom';
 
-import UserSearchResult from "../components/UserSearchResult";
-import { USER_SEARCH_QUERY } from "../graphql/queries/UserSearchQuery";
+import UserSearchResult from '../components/UserSearchResult';
+import { USER_SEARCH_QUERY } from '../graphql/queries/UserSearchQuery';
 
-const SearchResults = () => {
+const SearchResults = (): React.JSX.Element => {
   const { query } = useParams();
 
   const { loading, error, data } = useQuery(USER_SEARCH_QUERY, {
@@ -18,8 +18,6 @@ const SearchResults = () => {
   if (error) {
     return <p>Error: {error.message}</p>;
   }
-
-  console.log(data);
 
   return (
     <main className="flex flex-col items-center justify-start grow min-h-full">
