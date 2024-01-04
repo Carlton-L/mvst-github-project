@@ -89,7 +89,7 @@ const UserSearchResult = ({ user }: Props) => {
           </div>
           <div className="flex flex-row mt-4 text-grey text-xs md:text-base">
             {user.node.location ? (
-              <div className="flex flex-row gap-1">
+              <div className="flex flex-row gap-1 items-center">
                 <svg
                   width="20"
                   height="20"
@@ -119,7 +119,7 @@ const UserSearchResult = ({ user }: Props) => {
               ''
             )}
             {user.node.followers && user.node.followers.totalCount ? (
-              <div className="flex flex-row gap-1">
+              <div className="flex flex-row gap-1 items-center">
                 <svg
                   width="20"
                   height="20"
