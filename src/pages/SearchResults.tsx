@@ -29,7 +29,7 @@ const SearchResults = () => {
       </h3>
       <ul>
         {/* TODO: Replace "any" type */}
-        {data.search.edges.map((e: any, i: number) => {
+        {data.search.edges.map((e: object, i: number) => {
           return <UserSearchResult user={e} key={i} />;
         })}
       </ul>
