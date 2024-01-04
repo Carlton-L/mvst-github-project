@@ -114,7 +114,7 @@ const UserSearchResult = ({ user }: Props) => {
             {user.node.location &&
             user.node.followers &&
             user.node.followers.totalCount ? (
-              <div className="mx-4">&#x2022;</div>
+              <div className="mx-2">&#x2022;</div>
             ) : (
               ''
             )}
