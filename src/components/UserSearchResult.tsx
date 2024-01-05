@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { DetailedReactHTMLElement, createElement } from 'react';
 
 // FIXME: Add type for Apollo user query
@@ -75,17 +75,26 @@ const UserSearchResult = ({
       className="mt-3 flex flex-row rounded-3xl bg-grey-dark w-full justify-stretch"
     >
       <div className="p-3 flex flex-row flex-grow">
-        <div className="flex rounded-full bg-primary size-16 mr-3 flex-shrink-0"></div>
+        <img
+          src={user.node.avatarUrl}
+          className="flex rounded-full bg-primary size-16 mr-3 flex-shrink-0"
+        />
         <div className="flex flex-col">
           <div className="flex flex-col">
-            <h4 className="font-bold text-base md:text-xl">
+            <Link
+              to={`/user/${user.node.id}`}
+              className="font-bold text-base md:text-xl hover:underline"
+            >
               {user.node.name &&
                 findAndWrap(user.node.name, query, 'span', 'text-primary')}
-            </h4>
-            <h5 className="text-grey text-base md:text-xl">
+            </Link>
+            <Link
+              to={`/user/${user.node.id}`}
+              className="text-grey text-base md:text-xl hover:underline"
+            >
               {user.node.login &&
                 findAndWrap(user.node.login, query, 'span', 'text-primary')}
-            </h5>
+            </Link>
             <p className="text-sm md:text-base">
               {user.node.bio &&
                 findAndWrap(user.node.bio, query, 'span', 'text-primary')}
@@ -164,7 +173,10 @@ const UserSearchResult = ({
           </div>
         </div>
       </div>
-      <div className="flex flex-col flex-shrink-0 justify-center items-center self-stretch gap-2 rounded-3xl text-black bg-primary w-20 md:w-32">
+      <Link
+        to={`/user/${user.node.id}`}
+        className="flex flex-col flex-shrink-0 justify-center items-center self-stretch gap-2 rounded-3xl text-black bg-primary w-20 md:w-32 text-base md:text-xl"
+      >
         <svg
           className="w-7 h-7 md:w-12 md:h-12"
           width="48"
@@ -198,10 +210,8 @@ const UserSearchResult = ({
             </clipPath>
           </defs>
         </svg>
-        <div className="text-base md:text-xl">
-          {user.node.repositories.totalCount}
-        </div>
-      </div>
+        {user.node.repositories.totalCount}
+      </Link>
     </li>
   );
 };
