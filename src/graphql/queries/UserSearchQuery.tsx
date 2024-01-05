@@ -1,15 +1,21 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 const USER_SEARCH_QUERY = gql`
-  query UserSearchQuery($query: String!, $cursor: String) {
-    search(query: $query, type: USER, first: 10, after: $cursor) {
+  query UserSearchQuery(
+    $query: String!
+    $cursor: String
+    $resultsPerPage: Int!
+  ) {
+    search(query: $query, type: USER, first: $resultsPerPage, after: $cursor) {
+      totalPages(resultsPerPage: $resultsPerPage) @client
+      userCount
       pageInfo {
         startCursor
         hasNextPage
+        hasPreviousPage
         endCursor
         __typename
       }
-      userCount
       edges {
         node {
           ... on User {
