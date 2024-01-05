@@ -8,6 +8,8 @@ const UserSearchField = (): React.JSX.Element => {
     if (event.key === 'Enter') {
       const element = event.currentTarget;
       navigate(`/search/${element.value}`);
+      element.value = '';
+      element.blur();
     }
   };
 
