@@ -1,20 +1,20 @@
-import React from "react";
-import * as ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import React from 'react';
+import * as ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ApolloProvider,
   ApolloClient,
   createHttpLink,
   InMemoryCache,
-} from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 
-import Root from "./routes/Root.tsx";
-import ErrorPage from "./error-page.tsx";
-import SearchResults from "./pages/SearchResults.tsx";
+import Root from './routes/Root.tsx';
+import ErrorPage from './error-page.tsx';
+import SearchResults from './pages/SearchResults.tsx';
 
-import "./index.css";
+import './index.css';
 
 import { MockedProvider } from "@apollo/client/testing";
 import { USER_SEARCH_QUERY } from "./graphql/queries/UserSearchQuery.tsx";
@@ -219,32 +219,57 @@ const token = import.meta.env.VITE_API_TOKEN;
 
 const authLink = setContext((_, { headers }) => {
   return {
-    headers: { ...headers, authorization: token ? `Bearer ${token}` : "" },
+    headers: { ...headers, authorization: token ? `Bearer ${token}` : '' },
   };
 });
 
 const httpLink = createHttpLink({ uri: host });
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const client = new ApolloClient({
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: {
+      // Type policy map
+      SearchResultItemConnection: {
+        fields: {
+          // Field policy map for the SearchResultItemConnection type
+          totalPages: {
+            // Field policy for the totalPages field
+            read(_, { args, readField }) {
+              // The read function for the totalPages field
+              // FIXME: readField potentially returns undefined (this seems false)
+              const userCount: number = readField('userCount');
+
+              // Total page count is total number of results (max 1000)
+              // divided by the number of results per page
+              // FIXME: "args is possibly null" error
+              const pageCount =
+                (userCount > 1000 ? 1000 : userCount) / args.resultsPerPage;
+
+              return pageCount;
+            },
+          },
+        },
+      },
+    },
+  }),
   link: authLink.concat(httpLink),
 });
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "search/:query",
+        path: 'search/:query/:page?',
         element: <SearchResults />,
       },
     ],
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     {/* <ApolloProvider client={client}>
       <RouterProvider router={router} />
