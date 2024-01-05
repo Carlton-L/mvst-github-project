@@ -1,5 +1,3 @@
-import { DetailedReactHTMLElement } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 /**
  * I know the following:
  * userCount (Int) - up to 1,000
@@ -43,7 +41,7 @@ interface PaginationProps {
   currentPage: number;
   hasNextPage: boolean;
   hasPreviousPage: boolean;
-  callbackFn: (direction: string) => void;
+  callbackFn: (direction: 'next' | 'previous') => void;
   resultsPerPage?: number;
 }
 
@@ -55,7 +53,6 @@ interface PaginationProps {
  * @param {2} props.hasNextPage If next page exists ? true : false
  * @param {3} props.hasPreviousPage If previous page exists ? true : false
  * @param {4} props.callbackFn Function that accepts an argument with the type of "next" | "previous"
- * @param {5} [props.resultsPerPage=10] Number of results displayed per page
  */
 const Pagination = ({
   totalPages,
@@ -63,9 +60,7 @@ const Pagination = ({
   hasNextPage,
   hasPreviousPage,
   callbackFn,
-  resultsPerPage = 10,
 }: PaginationProps): React.JSX.Element => {
-  const { state } = useLocation();
   return (
     <div className="">
       <button
@@ -77,18 +72,39 @@ const Pagination = ({
         Prev
       </button>
       {/* TODO: Render this div component if the value of the first link is more than 1 */}
-      <div>...</div>
-      {currentPage > 1}
-      <Link to={}>1</Link>
-      <Link to={}>2</Link>
-      <Link to={}>3</Link>
+      {currentPage >= 3 ? <div>...</div> : ''}
+      {hasPreviousPage ? (
+        <button
+          disabled={!hasPreviousPage}
+          aria-disabled={!hasPreviousPage}
+          className="disabled:text-grey disabled:bg-black"
+          onClick={() => callbackFn('previous')}
+        >
+          {currentPage - 1}
+        </button>
+      ) : (
+        ''
+      )}
+      <button>{currentPage}</button>
+      {hasNextPage ? (
+        <button
+          disabled={!hasPreviousPage}
+          aria-disabled={!hasPreviousPage}
+          className="disabled:text-grey disabled:bg-black"
+          onClick={() => callbackFn('previous')}
+        >
+          {currentPage + 1}
+        </button>
+      ) : (
+        ''
+      )}
       {/* TODO: Render this div component if the value of the last link is less than the total number of pages */}
-      <div>...</div>
+      {totalPages - currentPage >= 2 ? <div>...</div> : ''}
       <button
         disabled={!hasNextPage}
         aria-disabled={!hasNextPage}
         className=""
-        onClick={callbackFn('next')}
+        onClick={() => callbackFn('next')}
       >
         Next
       </button>
