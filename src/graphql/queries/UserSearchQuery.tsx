@@ -14,6 +14,7 @@ const USER_SEARCH_QUERY = gql`
         hasNextPage
         hasPreviousPage
         endCursor
+        __typename
       }
       edges {
         node {
@@ -23,16 +24,20 @@ const USER_SEARCH_QUERY = gql`
             bio
             followers {
               totalCount
+              __typename
             }
             location
             login
             name
             repositories {
               totalCount
+              __typename
             }
+            __typename
           }
         }
       }
+      __typename
     }
   }
 `;
