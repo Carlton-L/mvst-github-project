@@ -173,6 +173,7 @@ const UserSearchResult = ({
           </div>
         </div>
       </div>
+      {/* TODO: Fix or disable this link or handle the error for cases where an Org is returned instead of a user */}
       <Link
         to={`/user/${user.node.id}`}
         className="flex flex-col flex-shrink-0 justify-center items-center self-stretch gap-2 rounded-3xl text-black bg-primary w-20 md:w-32 text-base md:text-xl"
@@ -210,7 +211,8 @@ const UserSearchResult = ({
             </clipPath>
           </defs>
         </svg>
-        {user.node.repositories.totalCount}
+        {/* NOTE: This check is required because sometimes the API returns an Organization instead of a user, as an empty object */}
+        {user.node.repositories ? user.node.repositories.totalCount : 0}
       </Link>
     </li>
   );

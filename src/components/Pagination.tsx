@@ -1,41 +1,3 @@
-/**
- * I know the following:
- * userCount (Int) - up to 1,000
- * The number per page (10)
- * startCursor (string)
- * endCursor (string)
- * hasNextPage (bool)
- * hasPreviousPage (bool)
- *
- * If there's >= 1000 userCount, the number of pages is always the same (100)
- * startCursor and endCursor need to be in state
- * hasNextPage and hasPreviousPage also need to be in state
- * total number of pages should be in state
- * current page can't be used for much but should be in state
- *
- * Need to calculate the total number of pages
- *
- * Make a search query OR directly go to url /search/:query
- * Someone could type /search/:query/:page
- * in this case I need to check that currentPage matches the slug
- * When going to the next page, I update the currentPage in the state
- * if navigating directly, state object should be empty
- *
- * Pagination needs to trigger SearchResults.tsx to reload the page with a new slug
- * Pagination also needs to trigger UserPage.tsx to reload only the repositories
- * component without reloading the page
- *
- * So pagination should tell it's parent component what to set as the state
- * Parent component needs to know:
- * Whether the user wants to navigate to the next page or the previous page
- *
- * ONLY OPTIONS ARE NEXT OR PREVIOUS
- *
- * State: {
- *  page
- * }
- */
-
 interface PaginationProps {
   totalPages: number;
   currentPage: number;
@@ -48,11 +10,14 @@ interface PaginationProps {
 /**
  * Pagination component
  *
+ * Renders pagination nav buttons, and returns 'next' or 'previous' to the passed
+ * in callback function on button click
+ *
  * @param {0} props.totalPages Total number of pages
  * @param {1} props.currentPage Current page number
  * @param {2} props.hasNextPage If next page exists ? true : false
  * @param {3} props.hasPreviousPage If previous page exists ? true : false
- * @param {4} props.callbackFn Function that accepts an argument with the type of "next" | "previous"
+ * @param {4} props.callbackFn Callback function that accepts an argument with the type of "next" | "previous"
  */
 const Pagination = ({
   totalPages,
@@ -62,51 +27,96 @@ const Pagination = ({
   callbackFn,
 }: PaginationProps): React.JSX.Element => {
   return (
-    <div className="">
+    <div className="flex flex-row justify-center items-center gap-2 md:gap-3 my-3 md:my-5">
       <button
         disabled={!hasPreviousPage}
         aria-disabled={!hasPreviousPage}
-        className="disabled:text-grey disabled:bg-black"
+        className="stroke-white disabled:stroke-grey text-white bg-grey-dark disabled:text-grey disabled:bg-black flex flex-row gap-2.5 items-center p-3.5 md:p-5 rounded-full font-bold text-base md:text-xl"
         onClick={() => callbackFn('previous')}
       >
+        <svg
+          className="stroke-inherit"
+          width="9"
+          height="16"
+          viewBox="0 0 9 16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M1.5 8L7.5 2"
+            stroke-width="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M1.5 8L7.5 14"
+            stroke-width="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
         Prev
       </button>
-      {/* TODO: Render this div component if the value of the first link is more than 1 */}
       {currentPage >= 3 ? <div>...</div> : ''}
       {hasPreviousPage ? (
         <button
           disabled={!hasPreviousPage}
           aria-disabled={!hasPreviousPage}
-          className="disabled:text-grey disabled:bg-black"
+          className="text-white bg-grey-dark disabled:text-grey disabled:bg-black p-3.5 md:p-5 rounded-full font-bold text-base md:text-xl"
           onClick={() => callbackFn('previous')}
         >
-          {currentPage - 1}
+          <div className="w-5 md:w-6"> {currentPage - 1}</div>
         </button>
       ) : (
         ''
       )}
-      <button>{currentPage}</button>
+      <button
+        disabled
+        className="text-white bg-grey-dark border-primary border-solid border p-3.5 md:p-5 rounded-full font-bold text-base md:text-xl"
+      >
+        <div className="w-5 md:w-6">{currentPage}</div>
+      </button>
       {hasNextPage ? (
         <button
-          disabled={!hasPreviousPage}
-          aria-disabled={!hasPreviousPage}
-          className="disabled:text-grey disabled:bg-black"
-          onClick={() => callbackFn('previous')}
+          disabled={!hasNextPage}
+          aria-disabled={!hasNextPage}
+          className="text-white bg-grey-dark disabled:text-grey disabled:bg-black p-3.5 md:p-5 rounded-full font-bold text-base md:text-xl"
+          onClick={() => callbackFn('next')}
         >
-          {currentPage + 1}
+          <div className="w-5 md:w-6">{currentPage + 1}</div>
         </button>
       ) : (
         ''
       )}
-      {/* TODO: Render this div component if the value of the last link is less than the total number of pages */}
       {totalPages - currentPage >= 2 ? <div>...</div> : ''}
       <button
         disabled={!hasNextPage}
         aria-disabled={!hasNextPage}
-        className=""
+        className="stroke-white disabled:stroke-grey text-white bg-grey-dark disabled:text-grey disabled:bg-black flex flex-row gap-2.5 items-center p-3.5 md:p-5 rounded-full font-bold text-base md:text-xl"
         onClick={() => callbackFn('next')}
       >
         Next
+        <svg
+          className="stroke-inherit"
+          width="7"
+          height="10"
+          viewBox="0 0 7 10"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M5.5 5L1.5 1"
+            stroke-width="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M5.5 5L1.5 9"
+            stroke-width="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
       </button>
     </div>
   );

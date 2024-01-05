@@ -267,14 +267,12 @@ const client = new ApolloClient({
             // Field policy for the totalPages field
             read(_, { args, readField }) {
               // The read function for the totalPages field
-              // FIXME: readField potentially returns undefined (this seems false)
-              const userCount: number = readField('userCount');
+              const userCount: number | undefined = readField('userCount');
 
               // Total page count is total number of results (max 1000)
               // divided by the number of results per page
-              // FIXME: "args is possibly null" error
               const pageCount =
-                (userCount > 1000 ? 1000 : userCount) / args.resultsPerPage;
+                (userCount! > 1000 ? 1000 : userCount!) / args!.resultsPerPage;
 
               return pageCount;
             },
