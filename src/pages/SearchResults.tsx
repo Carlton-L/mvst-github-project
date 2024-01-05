@@ -26,8 +26,6 @@ const SearchResults = (): React.JSX.Element => {
     }
   });
 
-  console.log(typeof state, state);
-
   const { loading, error, data } = useQuery(USER_SEARCH_QUERY, {
     variables: {
       query: query,
