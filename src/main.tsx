@@ -11,6 +11,7 @@ import {
 import { setContext } from '@apollo/client/link/context';
 
 import Root from './routes/Root.tsx';
+import Home from './pages/Home.tsx';
 import ErrorPage from './error-page.tsx';
 import SearchResults from './pages/SearchResults.tsx';
 
@@ -286,10 +287,13 @@ const client = new ApolloClient({
 
 const router = createBrowserRouter([
   {
-    path: '/',
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
+      {
+        path: '/',
+        element: <Home />,
+      },
       {
         path: 'search/:query/:page?',
         element: <SearchResults />,
