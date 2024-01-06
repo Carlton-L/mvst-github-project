@@ -4,10 +4,12 @@ import Footer from "../components/Footer";
 
 const Root = () => {
   return (
-    <div className="flex flex-col justify-between min-h-screen bg-black text-white">
-      <Header />
-      <Outlet />
-      <Footer />
+    <div className="min-w-screen min-h-screen bg-black text-white px-3">
+      <div className="flex flex-col justify-between max-w-screen-lg min-h-screen mx-auto">
+        <Header />
+        <Outlet />
+        <Footer />
+      </div>
     </div>
   );
 };
