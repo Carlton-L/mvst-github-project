@@ -65,6 +65,10 @@ const findAndWrap = (
   });
 };
 
+/**
+ *
+ * @param {user}
+ */
 const UserSearchResult = ({
   user,
 }: UserSearchResultProps): React.JSX.Element => {

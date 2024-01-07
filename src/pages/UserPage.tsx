@@ -36,7 +36,7 @@ const UserPage = (): React.JSX.Element => {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="bg-grey-dark p-3 flex flex-col md:flex-row gap-3 justify-center items-center md:justify-start md:items-start rounded-3xl">
+      <div className="bg-grey-dark p-3 flex flex-col md:flex-row gap-3 md:gap-8 justify-center items-center md:justify-start md:items-start rounded-3xl">
         <img
           src={data.user.avatarUrl}
           alt="user avatar"
@@ -51,7 +51,7 @@ const UserPage = (): React.JSX.Element => {
               </div>
             </div>
           ) : (
-            <div className="text-grey">-</div>
+            <div className="text-grey order-first md:order-2">-</div>
           )}
           <div className="flex flex-col w-full gap-px md:order-1">
             {data.user.name ? (
@@ -70,7 +70,7 @@ const UserPage = (): React.JSX.Element => {
           </div>
           <div className="md:order-3 grid grid-cols-2 auto-cols-max gap-2 w-full">
             {data.user.location ? (
-              <div className="flex flex-row justify-start items-center gap-1">
+              <div className="flex flex-row justify-start items-center gap-2">
                 <svg
                   className="shrink-0"
                   width="20"
@@ -96,7 +96,7 @@ const UserPage = (): React.JSX.Element => {
               ''
             )}
             {data.user.followers ? (
-              <div className="flex flex-row justify-start items-center gap-1">
+              <div className="flex flex-row justify-start items-center gap-2">
                 <svg
                   className="shrink-0"
                   width="20"
@@ -138,7 +138,7 @@ const UserPage = (): React.JSX.Element => {
               ''
             )}
             {data.user.company ? (
-              <div className="flex flex-row justify-start items-center gap-1">
+              <div className="flex flex-row justify-start items-center gap-2">
                 <svg
                   className="shrink-0"
                   width="20"
@@ -160,7 +160,7 @@ const UserPage = (): React.JSX.Element => {
               ''
             )}
             {data.user.websiteUrl ? (
-              <div className="flex flex-row justify-start items-center gap-1">
+              <div className="flex flex-row justify-start items-center gap-2">
                 <svg
                   className="shrink-0"
                   width="20"
@@ -176,6 +176,7 @@ const UserPage = (): React.JSX.Element => {
                     fill="#7E7E7E"
                   />
                 </svg>
+                {/* FIXME: Url without http:// will open as a relative link to a 404 page */}
                 <a
                   href={data.user.websiteUrl}
                   className="text-grey underline truncate max-w-64"
@@ -199,7 +200,7 @@ const UserPage = (): React.JSX.Element => {
                     return (
                       <div
                         key={i}
-                        className="flex flex-row justify-start items-center gap-1"
+                        className="flex flex-row justify-start items-center gap-2"
                       >
                         {socialProviderIcon[e.provider]}
                         <a
