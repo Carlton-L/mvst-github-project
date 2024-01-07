@@ -14,6 +14,7 @@ import Root from './routes/Root.tsx';
 import Home from './pages/Home.tsx';
 import ErrorPage from './error-page.tsx';
 import SearchResults from './pages/SearchResults.tsx';
+import UserPage from './pages/UserPage.tsx';
 
 import './index.css';
 
@@ -297,6 +298,10 @@ const router = createBrowserRouter([
       {
         path: 'search/:query/:page?',
         element: <SearchResults />,
+      },
+      {
+        path: '/user/:id',
+        element: <UserPage />,
       },
     ],
   },

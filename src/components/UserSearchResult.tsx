@@ -8,7 +8,7 @@ interface UserSearchResultProps {
 
 /**
  * Returns an array containing strings and React components wrapping the
- * passed in search string
+ * passed in search string with the passed in wrapper
  * @param {0} str A string to search through
  * @param {1} substr A substring to search for
  * @param {2} wrapper An HTML element tag name which will wrap each instance of substr
@@ -82,14 +82,14 @@ const UserSearchResult = ({
         <div className="flex flex-col">
           <div className="flex flex-col">
             <Link
-              to={`/user/${user.node.id}`}
+              to={`/user/${user.node.login}`}
               className="font-bold text-base md:text-xl hover:underline"
             >
               {user.node.name &&
                 findAndWrap(user.node.name, query, 'span', 'text-primary')}
             </Link>
             <Link
-              to={`/user/${user.node.id}`}
+              to={`/user/${user.node.login}`}
               className="text-grey text-base md:text-xl hover:underline"
             >
               {user.node.login &&
@@ -175,7 +175,7 @@ const UserSearchResult = ({
       </div>
       {/* TODO: Fix or disable this link or handle the error for cases where an Org is returned instead of a user */}
       <Link
-        to={`/user/${user.node.id}`}
+        to={`/user/${user.node.login}`}
         className="flex flex-col flex-shrink-0 justify-center items-center self-stretch gap-2 rounded-3xl text-black bg-primary w-20 md:w-32 text-base md:text-xl"
       >
         <svg

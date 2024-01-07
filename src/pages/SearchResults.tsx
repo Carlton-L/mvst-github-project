@@ -49,9 +49,13 @@ const SearchResults = (): React.JSX.Element => {
     return <p>Error: {error.message}</p>;
   }
 
-  // navigatePage gets passed a direction by the child component
-  // then the parent component uses the direction to navigate
-  // the parent component uses
+  /**
+   * Gets passed a direction by the child component and uses that to
+   * navigate to a new page
+   *
+   * @param {0} direction a string "next" or "previous" indicating the
+   * direction of pagination
+   */
   const navigatePage = (direction: 'next' | 'previous'): void => {
     if (direction === 'next') {
       if (state) {
