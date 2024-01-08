@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom';
 import UserSearchField from './UserSearchField';
 
-const Header = () => {
+/**
+ * React header component containing a search field and site logo
+ * @returns React element
+ */
+const Header = (): React.JSX.Element => {
   return (
     <header className="border-b border-white p-4 flex gap-5 justify-between items-center">
       <Link to="/">

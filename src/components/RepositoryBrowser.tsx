@@ -21,7 +21,7 @@ interface RepositoryBrowserState {
 
 /**
  * Displays user repositories and pagination
- * @param props Prop object containing the user login and optional
+ * @param {0} props Prop object containing the user login and optional
  * language and query strings
  */
 const RepositoryBrowser = ({
@@ -55,7 +55,7 @@ const RepositoryBrowser = ({
   }
 
   /**
-   * Gets passed a direction by the child component and uses that to
+   * Function which gets passed a direction by the child component and uses that to
    * update the state with a new pagination cursor and direction
    *
    * @param {0} direction a string "next" or "previous" indicating the

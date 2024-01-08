@@ -1,12 +1,11 @@
 import { useParams, Link } from 'react-router-dom';
 import { DetailedReactHTMLElement, createElement } from 'react';
 
-// FIXME: Add type for Apollo user query
+// TODO: Add type for Apollo user query
 interface UserSearchResultProps {
   user: any;
 }
 
-// FIXME: Use Github Api to highlight text matches (SearchResultItemEdge)
 /**
  * Returns an array containing strings and React components wrapping the
  * passed in search string with the passed in wrapper
@@ -14,6 +13,7 @@ interface UserSearchResultProps {
  * @param {1} substr A substring to search for
  * @param {2} wrapper An HTML element tag name which will wrap each instance of substr
  * @param {3} classes A string with classnames to be added to all React components returned by the function
+ * @returns An array with a mix of unmodified strings and React elements wrapping a string
  */
 const findAndWrap = (
   str: string,
@@ -28,6 +28,7 @@ const findAndWrap = (
    * and all surrounding strings
    * @param {0} str A string to search through
    * @param {1} substr A substring to search for
+   * @returns An array containing strings of the passed in substring and the surrounding strings
    */
   const split = (str: string, substr: string): Array<string> => {
     const lcStr = str.toLowerCase();
@@ -67,9 +68,8 @@ const findAndWrap = (
 };
 
 /**
- * Component which displays user info and a link to a user detail page
- * @param {0} user User object returned from API call
- * @returns React element
+ *
+ * @param {user}
  */
 const UserSearchResult = ({
   user,

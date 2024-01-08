@@ -1,5 +1,6 @@
 import { socialAccountProvider } from './socialAccountProvider';
 
+// FIXME: Create type for this const
 const socialProviderIcon = {
   [socialAccountProvider.generic]: (
     <svg

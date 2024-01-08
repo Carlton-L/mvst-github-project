@@ -1,5 +1,6 @@
 import { formatDistanceToNow } from 'date-fns';
 
+// TODO: Add repository GraphQL type
 interface RepositoryProps {
   repository: any;
   user: string;

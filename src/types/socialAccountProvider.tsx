@@ -1,3 +1,8 @@
+/**
+ * Enum for socialAccountProvider values
+ * @readonly
+ * @enum {string}
+ */
 enum socialAccountProvider {
   generic = 'GENERIC',
   facebook = 'FACEBOOK',

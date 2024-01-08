@@ -1,8 +1,17 @@
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 
+/**
+ * React component which accepts a query for a Github user and navigates to the search page
+ * with that query as a param
+ * @returns React element
+ */
 const UserSearchField = (): React.JSX.Element => {
   const navigate: NavigateFunction = useNavigate();
 
+  /**
+   * Function which navigates to the search page using the input of the search field as the query param
+   * @param event JavaScript event fired by the search field input
+   */
   const search = (event: React.KeyboardEvent<HTMLInputElement>): void => {
     // Check if Enter key was pressed
     if (event.key === 'Enter') {

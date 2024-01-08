@@ -83,7 +83,7 @@ const UserPage = (): React.JSX.Element => {
   }
 
   return (
-    <div className="flex flex-col gap-4 items-center flex-grow px-5 pt-5">
+    <main className="flex flex-col gap-4 items-center flex-grow px-5 pt-5">
       <div className="bg-grey-dark p-3 flex flex-col md:flex-row gap-3 md:gap-8 justify-center items-center md:justify-start md:items-start rounded-3xl w-full">
         <img
           src={data.user.avatarUrl}
@@ -323,7 +323,7 @@ const UserPage = (): React.JSX.Element => {
         language={state.language}
         query={state.query}
       />
-    </div>
+    </main>
   );
 };
 
