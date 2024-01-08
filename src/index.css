@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 /*
   1. Use a more-intuitive box-sizing model.
 */
@@ -59,4 +62,8 @@ h6 {
 #root,
 #__next {
   isolation: isolate;
+}
+
+#root {
+  min-height: 100vh;
 }
