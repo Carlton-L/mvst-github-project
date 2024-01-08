@@ -7,7 +7,7 @@ interface RepositoryProps {
 
 /**
  * Component which displays information about a single repository
- * @param param0
+ * @param {0} props Repository object and user login string
  * @returns
  */
 const Repository = ({
@@ -19,7 +19,7 @@ const Repository = ({
       <div>
         <a
           href={`https://github.com/${user}/${repository.node.name}`}
-          className="text-primary font-bold text-xl flex flex-row gap-1 items-center"
+          className="text-primary font-bold text-xl flex flex-row gap-1 items-center truncate"
         >
           {`${repository.node.name} `}
           <svg
@@ -39,7 +39,7 @@ const Repository = ({
       <div className="text-xs text-grey font-medium">
         {repository.node.description ? repository.node.description : ''}
       </div>
-      <div className="text-xs text-grey font-medium flex flex-row gap-3">
+      <div className="text-xs text-grey font-medium flex flex-row flex-wrap gap-3">
         {repository.node.primaryLanguage ? (
           <div className="flex flex-row gap-1 items-center justify-center">
             <div

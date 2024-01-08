@@ -8,9 +8,10 @@ import { USER_INFO_QUERY } from '../graphql/queries/UserInfoQuery';
 import RepositoryBrowser from '../components/RepositoryBrowser';
 import { socialAccountProvider } from '../types/socialAccountProvider';
 import { socialProviderIcon } from '../types/socialProviderIcon';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 interface UserPageState {
-  language: any;
+  language: string | null;
   query: string | null;
 }
 
@@ -25,6 +26,41 @@ const UserPage = (): React.JSX.Element => {
     query: null,
   });
 
+  const languages: Array<string> = [
+    'CSS',
+    'JavaScript',
+    'HTML',
+    'Java',
+    'Python',
+    'TypeScript',
+    'Jupyter Notebook',
+    'PHP',
+    'Dart',
+    'C',
+    'C++',
+    'C#',
+    'Go',
+    'Ruby',
+    'Rust',
+    'Swift',
+    'Kotlin',
+  ];
+
+  /**
+   * Function which updates state with the value of the select input
+   * @param event JavaScript event fired by input element
+   */
+  const handleSelectChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ): void => {
+    const element: EventTarget & HTMLSelectElement = event.target;
+    setState({ query: state.query, language: element.value });
+  };
+
+  /**
+   * Function which updates state with the value entered into the search field
+   * @param event JavaScript event fired by input element
+   */
   const search = (event: React.KeyboardEvent<HTMLInputElement>): void => {
     const element = event.currentTarget;
     setState({ language: state.language, query: element.value });
@@ -36,11 +72,8 @@ const UserPage = (): React.JSX.Element => {
 
   if (loading) {
     return (
-      <div className="flex space-x-2 justify-center items-center bg-black h-screen">
-        <span className="sr-only">Loading...</span>
-        <div className="h-8 w-8 bg-primary rounded-full animate-bounce [animation-delay:-0.3s]"></div>
-        <div className="h-8 w-8 bg-primary rounded-full animate-bounce [animation-delay:-0.15s]"></div>
-        <div className="h-8 w-8 bg-primary rounded-full animate-bounce"></div>
+      <div className="h-screen">
+        <LoadingSpinner />
       </div>
     );
   }
@@ -51,7 +84,7 @@ const UserPage = (): React.JSX.Element => {
 
   return (
     <div className="flex flex-col gap-4 items-center flex-grow px-5 pt-5">
-      <div className="bg-grey-dark p-3 flex flex-col md:flex-row gap-3 md:gap-8 justify-center items-center md:justify-start md:items-start rounded-3xl">
+      <div className="bg-grey-dark p-3 flex flex-col md:flex-row gap-3 md:gap-8 justify-center items-center md:justify-start md:items-start rounded-3xl w-full">
         <img
           src={data.user.avatarUrl}
           alt="user avatar"
@@ -258,7 +291,7 @@ const UserPage = (): React.JSX.Element => {
           {/* FIXME: Repository count shows total of public and private repos */}
           <div className="text-grey">{data.user.repositories.totalCount}</div>
         </div>
-        <div className="mb-5 pb-5 border-b border-grey w-full">
+        <div className="mb-5 pb-5 border-b border-grey text-grey w-full gap-2 flex flex-row flex-wrap items-center">
           {/* TODO: Abstract this element out into its own component */}
           <input
             type="search"
@@ -268,13 +301,28 @@ const UserPage = (): React.JSX.Element => {
             onKeyDown={search}
             className="bg-grey-dark text-grey focus:text-white focus:outline-primary outline-primary/0 flex grow rounded-full outline outline-1 outline-offset-2 transition-all duration-300 py-2 px-4"
           />
+          <div>
+            Language:{' '}
+            <select
+              className="outline-none focus:outline-none py-2 px-4 bg-grey-dark text-grey rounded-3xl appearance-none"
+              value={state.language ? state.language : undefined}
+              onChange={handleSelectChange}
+            >
+              <option value="">Any Language</option>
+              {languages.map((item, i) => (
+                <option value={item} key={i}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-        <RepositoryBrowser
-          login={data.user.login}
-          language={state.language}
-          query={state.query}
-        />
       </div>
+      <RepositoryBrowser
+        login={data.user.login}
+        language={state.language}
+        query={state.query}
+      />
     </div>
   );
 };

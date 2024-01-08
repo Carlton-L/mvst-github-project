@@ -5,6 +5,7 @@ import Repository from './Repository';
 
 import { USER_REPOS_QUERY } from '../graphql/queries/UserReposQuery';
 import Pagination from './Pagination';
+import LoadingSpinner from './LoadingSpinner';
 
 interface RepositoryBrowserProps {
   login: string;
@@ -46,14 +47,7 @@ const RepositoryBrowser = ({
   });
 
   if (loading) {
-    return (
-      <div className="flex space-x-2 justify-center items-center bg-black w-full">
-        <span className="sr-only">Loading...</span>
-        <div className="h-8 w-8 bg-primary rounded-full animate-bounce [animation-delay:-0.3s]"></div>
-        <div className="h-8 w-8 bg-primary rounded-full animate-bounce [animation-delay:-0.15s]"></div>
-        <div className="h-8 w-8 bg-primary rounded-full animate-bounce"></div>
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   if (error) {
