@@ -27,7 +27,7 @@ const Pagination = ({
   callbackFn,
 }: PaginationProps): React.JSX.Element => {
   return (
-    <div className="flex flex-row justify-center items-center gap-2 md:gap-3 my-3 md:my-5">
+    <div className="flex flex-row justify-center items-center gap-2 md:gap-3 my-3 md:my-5 w-full">
       <button
         disabled={!hasPreviousPage}
         aria-disabled={!hasPreviousPage}

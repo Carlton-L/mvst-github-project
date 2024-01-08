@@ -1,19 +1,34 @@
 import { useQuery } from '@apollo/client';
-import { useEffect } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import parse from 'html-react-parser';
 
 import { USER_INFO_QUERY } from '../graphql/queries/UserInfoQuery';
 
+import RepositoryBrowser from '../components/RepositoryBrowser';
 import { socialAccountProvider } from '../types/socialAccountProvider';
 import { socialProviderIcon } from '../types/socialProviderIcon';
 
+interface UserPageState {
+  language: any;
+  query: string | null;
+}
+
 /**
- * User page component which displays user info and repositories
+ * User detail page which displays user info and repositories
  * @returns React element
  */
 const UserPage = (): React.JSX.Element => {
   const { id } = useParams();
+  const [state, setState] = useState<UserPageState>({
+    language: null,
+    query: null,
+  });
+
+  const search = (event: React.KeyboardEvent<HTMLInputElement>): void => {
+    const element = event.currentTarget;
+    setState({ language: state.language, query: element.value });
+  };
 
   const { loading, error, data } = useQuery(USER_INFO_QUERY, {
     variables: { user: id },
@@ -35,7 +50,7 @@ const UserPage = (): React.JSX.Element => {
   }
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 items-center flex-grow px-5 pt-5">
       <div className="bg-grey-dark p-3 flex flex-col md:flex-row gap-3 md:gap-8 justify-center items-center md:justify-start md:items-start rounded-3xl">
         <img
           src={data.user.avatarUrl}
@@ -45,7 +60,9 @@ const UserPage = (): React.JSX.Element => {
         <div className="flex flex-col gap-3 justify-center items-center md:justify-start md:items-start w-full">
           {data.user.status ? (
             <div className=" order-first md:order-2 flex flex-row gap-3 justify-center items-center text-xl md:text-3xl">
-              {parse(data.user.status.emojiHTML)}
+              {data.user.status.emojiHTML
+                ? parse(data.user.status.emojiHTML)
+                : ''}
               <div className="text-base md:text-xl text-grey">
                 {data.user.status.message}
               </div>
@@ -216,6 +233,47 @@ const UserPage = (): React.JSX.Element => {
               : ''}
           </div>
         </div>
+      </div>
+      <a
+        href={`https://github.com/${data.user.login}`}
+        className="text-primary font-bold text-base flex flex-row gap-1 items-center"
+      >
+        View on Github{' '}
+        <svg
+          width="16"
+          height="17"
+          viewBox="0 0 16 17"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M10.8234 2.38253C10.3036 2.38253 9.88203 1.96099 9.88203 1.44116C9.88203 0.921543 10.3036 0.5 10.8234 0.5H15.0588C15.5783 0.5 16 0.921943 16 1.44116V5.67681C16 6.19643 15.5785 6.61797 15.0588 6.61797C14.5392 6.61797 14.1177 6.19643 14.1177 5.67681V3.71321L8.66544 9.16544C8.29794 9.53274 7.70206 9.53274 7.33456 9.16544C6.96726 8.79794 6.96726 8.20206 7.33456 7.83456L12.7868 2.38253H10.8234ZM14.1177 9.44126C14.1177 8.92144 14.5392 8.5001 15.0588 8.5001C15.5785 8.5001 16 8.92144 16 9.44126V15.5588C16 16.0785 15.5785 16.5 15.0588 16.5H0.941165C0.421543 16.5 0 16.0785 0 15.5588V1.44116C0 0.921543 0.421543 0.5 0.941165 0.5H7.05874C7.57856 0.5 8.0001 0.921543 8.0001 1.44116C8.0001 1.96099 7.57856 2.38253 7.05874 2.38253H1.88253V14.6177H14.1177V9.44126Z"
+            fill="#E6EDF3"
+          />
+        </svg>
+      </a>
+      <div className="border-t border-white pt-4 flex flex-col items-start w-full">
+        <div className="flex flex-row gap-2 text-xl font-bold text-white mb-4">
+          <div>Repositories</div>
+          {/* FIXME: Repository count shows total of public and private repos */}
+          <div className="text-grey">{data.user.repositories.totalCount}</div>
+        </div>
+        <div className="mb-5 pb-5 border-b border-grey w-full">
+          {/* TODO: Abstract this element out into its own component */}
+          <input
+            type="search"
+            id="search"
+            name="search"
+            placeholder="Search"
+            onKeyDown={search}
+            className="bg-grey-dark text-grey focus:text-white focus:outline-primary outline-primary/0 flex grow rounded-full outline outline-1 outline-offset-2 transition-all duration-300 py-2 px-4"
+          />
+        </div>
+        <RepositoryBrowser
+          login={data.user.login}
+          language={state.language}
+          query={state.query}
+        />
       </div>
     </div>
   );

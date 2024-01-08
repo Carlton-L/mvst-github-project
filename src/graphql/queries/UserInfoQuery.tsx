@@ -12,6 +12,9 @@ const USER_INFO_QUERY = gql`
       followers {
         totalCount
       }
+      repositories {
+        totalCount
+      }
       pronouns
       location
       websiteUrl
