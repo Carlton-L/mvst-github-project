@@ -1,7 +1,7 @@
 import { socialAccountProvider } from './socialAccountProvider';
 
-// NOTE: I'm not sure that using the generic object type is best in this case
-const socialProviderIcon: object = {
+// FIXME: Create type for this const
+const socialProviderIcon = {
   [socialAccountProvider.generic]: (
     <svg
       className="shrink-0"
