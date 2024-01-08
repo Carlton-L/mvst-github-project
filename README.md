@@ -7,6 +7,19 @@ GitHub user search utility and repository browser - search for a user and filter
 `npm install`
 `npm run dev`
 
+### :space_invader: Tech Stack
+
+<details open>
+  <summary>Frontend</summary>
+  <ul>
+    <li><a href="https://reactjs.org/">React.js / Javascript</a></li>
+    <li><a href="https://emotion.sh/">TailwindCSS / CSS Library</a></li>
+    <li><a href="https://www.typescriptlang.org/">TypeScript</a></li>
+    <li><a href="https://www.apollographql.com/">Apollo / GraphQL</a></li>
+    <li><a href="https://www.figma.com/">Figma / UI/UX Prototyping</a></li>
+  </ul>
+</details>
+
 ## Future Improvements
 
 1. Github user login - currently the app uses my own personal access token
