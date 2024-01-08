@@ -1,3 +1,7 @@
+/**
+ * React loading spinner component which displays a loading animation
+ * @returns React element
+ */
 const LoadingSpinner = (): React.JSX.Element => {
   return (
     <div className="flex space-x-2 justify-center items-center bg-black h-full">

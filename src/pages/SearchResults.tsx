@@ -1,12 +1,21 @@
 import { useQuery } from '@apollo/client';
 import { useEffect } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import {
+  NavigateFunction,
+  useLocation,
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
 
 import UserSearchResult from '../components/UserSearchResult';
 import { USER_SEARCH_QUERY } from '../graphql/queries/UserSearchQuery';
 import Pagination from '../components/Pagination';
 import LoadingSpinner from '../components/LoadingSpinner';
 
+/**
+ * Displays paginated user search results
+ * @returns React element containing the page content
+ */
 const SearchResults = (): React.JSX.Element => {
   const {
     state,
@@ -14,14 +23,14 @@ const SearchResults = (): React.JSX.Element => {
     state?: { currentPage?: number; startCursor?: string };
   } = useLocation();
   const { query, page } = useParams();
-  const navigate = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
 
-  /**
-   * Check for history state object if page parameter exists
-   * if there's no state, the user must have navigated here directly
-   * in this case, redirect to the top level search page (page 1)
-   */
   useEffect(() => {
+    /**
+     * Check for history state object if page parameter exists
+     * if there's no state, the user must have navigated here directly
+     * in this case, redirect to the top level search page (page 1)
+     */
     if (page && state === null) {
       navigate(`/search/${query}/`);
     }
@@ -44,12 +53,11 @@ const SearchResults = (): React.JSX.Element => {
   }
 
   /**
-   * Gets passed a direction by the child component and uses that to
-   * navigate to a new page
-   *
+   * Navigates to a new page using the passed in direction param
    * @param {0} direction a string "next" or "previous" indicating the
    * direction of pagination
    */
+  // TODO: Update navigatePage function with cursor reverse pagination similar to User page
   const navigatePage = (direction: 'next' | 'previous'): void => {
     if (direction === 'next') {
       if (state) {
@@ -71,6 +79,7 @@ const SearchResults = (): React.JSX.Element => {
         });
       }
     } else if (direction === 'previous') {
+      // Navigate backwards in the history stack
       navigate(-1);
     }
   };
