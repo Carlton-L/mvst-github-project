@@ -16,7 +16,7 @@ const UserSearchField = (): React.JSX.Element => {
     // Check if Enter key was pressed
     if (event.key === 'Enter') {
       const element = event.currentTarget;
-      navigate(`/search/${element.value}`);
+      navigate(`/mvst-github-project/search/${element.value}`);
       element.value = '';
       element.blur();
     }

@@ -60,17 +60,18 @@ const router = createBrowserRouter([
   {
     element: <Root />,
     errorElement: <ErrorPage />,
+    path: '/mvst-github-project/',
     children: [
       {
-        path: '/',
+        path: '/mvst-github-project/',
         element: <Home />,
       },
       {
-        path: 'search/:query/:page?',
+        path: '/mvst-github-project/search/:query/:page?',
         element: <SearchResults />,
       },
       {
-        path: '/user/:id',
+        path: '/mvst-github-project/user/:id',
         element: <UserPage />,
       },
     ],
