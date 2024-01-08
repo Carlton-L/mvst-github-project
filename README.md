@@ -7,7 +7,7 @@ GitHub user search utility and repository browser - search for a user and filter
 `npm install`
 `npm run dev`
 
-### :space_invader: Tech Stack
+## :space_invader: Tech Stack
 
 <details open>
   <summary>Frontend</summary>
