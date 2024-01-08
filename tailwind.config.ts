@@ -1,16 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     colors: {
-      primary: '#EBFF07',
-      white: '#E6EDF3',
-      grey: '#7E7E7E',
-      'grey-dark': '#181717',
-      black: '#000000',
+      primary: "#EBFF07",
+      white: "#E6EDF3",
+      grey: "#7E7E7E",
+      "grey-dark": "#181717",
+      black: "#000000",
     },
     fontFamily: {
-      sans: ['Inter', 'sans-serif'],
+      sans: ["Inter", "sans-serif"],
     },
     extend: {},
   },

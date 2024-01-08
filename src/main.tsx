@@ -269,14 +269,12 @@ const client = new ApolloClient({
             // Field policy for the totalPages field
             read(_, { args, readField }) {
               // The read function for the totalPages field
-              const resultCount: number | undefined =
-                readField('userCount') || readField('repositoryCount');
+              const userCount: number | undefined = readField('userCount');
 
               // Total page count is total number of results (max 1000)
               // divided by the number of results per page
-              const pageCount: number =
-                (resultCount! > 1000 ? 1000 : resultCount!) /
-                args!.resultsPerPage;
+              const pageCount =
+                (userCount! > 1000 ? 1000 : userCount!) / args!.resultsPerPage;
 
               return pageCount;
             },

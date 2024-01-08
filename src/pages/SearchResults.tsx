@@ -50,7 +50,6 @@ const SearchResults = (): React.JSX.Element => {
    * @param {0} direction a string "next" or "previous" indicating the
    * direction of pagination
    */
-  // FIXME: Update navigatePage function with pagination similar to User page
   const navigatePage = (direction: 'next' | 'previous'): void => {
     if (direction === 'next') {
       if (state) {
@@ -83,6 +82,7 @@ const SearchResults = (): React.JSX.Element => {
         <span className="text-primary inline-block">"{query}"</span>
       </h3>
       <ul className="w-full">
+        {/* TODO: Replace "any" type */}
         {data.search.edges.map((e: object, i: number) => {
           return <UserSearchResult user={e} key={i} />;
         })}

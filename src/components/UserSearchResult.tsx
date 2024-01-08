@@ -6,7 +6,6 @@ interface UserSearchResultProps {
   user: any;
 }
 
-// FIXME: Use Github Api to highlight text matches (SearchResultItemEdge)
 /**
  * Returns an array containing strings and React components wrapping the
  * passed in search string with the passed in wrapper
@@ -67,9 +66,8 @@ const findAndWrap = (
 };
 
 /**
- * Component which displays user info and a link to a user detail page
- * @param {0} user User object returned from API call
- * @returns React element
+ *
+ * @param {user}
  */
 const UserSearchResult = ({
   user,
