@@ -33,7 +33,7 @@ Note that your personal access token does not require any permissions.
 2. Testing - there is currently no testing library
 3. Storybook - Storybook can be used for component library
 
-## Bugs and TOOOs
+## Bugs and TODOs
 
 1. Add GraphQL types
 2. Handle error case for Organization returned instead of User from search query
@@ -43,3 +43,4 @@ Note that your personal access token does not require any permissions.
 6. Create components for repository search field and language filter
 7. Create type for socialProviderIcon.tsx
 8. Add mocks for all queries in mock version of main.tsx
+9. Pagination component does not display ellipses correctly when there are only 3 pages and the user is on the first page
