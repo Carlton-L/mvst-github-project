@@ -18,8 +18,8 @@ import UserPage from './pages/UserPage.tsx';
 
 import './index.css';
 
-const host = import.meta.env.VITE_API_HOST;
-const token = import.meta.env.VITE_API_TOKEN;
+const host: string = import.meta.env.VITE_API_HOST;
+const token: string = import.meta.env.VITE_API_TOKEN;
 
 const authLink = setContext((_, { headers }) => {
   return {
