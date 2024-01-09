@@ -19,6 +19,7 @@ interface PaginationProps {
  * @param {3} props.hasPreviousPage If previous page exists ? true : false
  * @param {4} props.callbackFn Callback function that accepts an argument with the type of "next" | "previous"
  */
+// FIXME: Ellipses do not display properly when there are only 3 pages of results and user is on the first page
 const Pagination = ({
   totalPages,
   currentPage,
