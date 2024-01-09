@@ -7,9 +7,8 @@ GitHub user search utility and repository browser - search for a user and filter
 `npm install`
 `npm run dev`
 
-You will need to create a .env file in the root directory with the following:
+You will need to un-comment the following line in `.env` and replace with your own personal access token:
 
-`VITE_API_HOST=https://api.github.com/graphql`
 `VITE_API_TOKEN=<YOUR PERSONAL ACCESS TOKEN>`
 
 Note that your personal access token does not require any permissions.
