@@ -2,7 +2,7 @@
 
 GitHub user search utility and repository browser - search for a user and filter through their repositories by search query and/or primary language.
 
-## How to Run
+## :rocket: How to Run
 
 `npm install`
 `npm run dev`
@@ -26,15 +26,17 @@ Note that your personal access token does not require any permissions.
   </ul>
 </details>
 
-## Future Improvements
+## :calendar: Future Improvements
 
-1. Github user login - currently the app uses my own personal access token
-2. Testing - there is currently no testing library
-3. Storybook - Storybook can be used for component library
+1. Deploy - Deploy page to Netlify or Heroku
+3. Testing - Add a testing library such as Jest
+4. Storybook - Add Storybook for component library management
+5. Github user login - Incorporate GitHub user login to fetch personalized token (requires backend)
+6. Astro - Try integrating Astro into the project
 
-## Bugs and TODOs
+## :beetle: Bugs and TODOs
 
-1. Add GraphQL types
+1. Add missing GraphQL query types
 2. Handle error case for Organization returned instead of User from search query
 3. Update navigatePage function in SearchResults.tsx to use cursor based reverse pagination
 4. Fix Url for user webpage in UserPage.tsx for cases where url does not include "https://"
