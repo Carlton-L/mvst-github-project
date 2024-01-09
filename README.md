@@ -28,7 +28,8 @@ Note that your personal access token does not require any permissions.
 
 ## :calendar: Future Improvements
 
-1. Deploy - Deploy page to Netlify or Heroku
+1. UI - Add search field micro-interaction per Figma prototype
+2. Deployment - Deploy page to Netlify or Heroku
 3. Testing - Add a testing library such as Jest
 4. Storybook - Add Storybook for component library management
 5. Github user login - Incorporate GitHub user login to fetch personalized token (requires backend)
