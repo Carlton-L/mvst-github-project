@@ -11,7 +11,7 @@ GitHub user search utility and repository browser - search for a user and filter
 
 `VITE_API_TOKEN=<YOUR PERSONAL ACCESS TOKEN>`
 
-Note that your personal access token does not require any permissions.
+Note that your personal access token does not require any permissions. This is required because any API call to the v4 Github API requires an access token.
 
 ## :space_invader: Tech Stack
 
