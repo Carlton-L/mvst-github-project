@@ -38,10 +38,11 @@ Note that your personal access token does not require any permissions.
 
 1. Add missing GraphQL query types
 2. Handle error case for Organization returned instead of User from search query
-3. Update navigatePage function in SearchResults.tsx to use cursor based reverse pagination
-4. Fix Url for user webpage in UserPage.tsx for cases where url does not include "https://"
-5. Fix repository count including both public and private repositories but repository browser displays only public repositories
-6. Create components for repository search field and language filter
-7. Create type for socialProviderIcon.tsx
-8. Add mocks for all queries in mock version of main.tsx
-9. Pagination component does not display ellipses correctly when there are only 3 pages and the user is on the first page
+3. Create React components for SVG elements instead of using inline SVGs
+4. Update navigatePage function in SearchResults.tsx to use cursor based reverse pagination
+5. Fix Url for user webpage in UserPage.tsx for cases where url does not include "https://"
+6. Fix repository count including both public and private repositories but repository browser displays only public repositories
+7. Create components for repository search field and language filter
+8. Create type for socialProviderIcon.tsx
+9. Add mocks for all queries in mock version of main.tsx
+10. Pagination component does not display ellipses correctly when there are only 3 pages and the user is on the first page
