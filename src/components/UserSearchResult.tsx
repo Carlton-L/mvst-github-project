@@ -88,7 +88,7 @@ const UserSearchResult = ({
         <div className="flex flex-col">
           <div className="flex flex-col">
             <Link
-              to={`/mvst-github-project/user/${user.node.login}`}
+              to={`/user/${user.node.login}`}
               className="font-bold text-base md:text-xl hover:underline"
             >
               {user.node.name &&
@@ -181,7 +181,7 @@ const UserSearchResult = ({
       </div>
       {/* TODO: Fix or disable this link or handle the error for cases where an Org is returned instead of a user */}
       <Link
-        to={`/mvst-github-project/ßuser/${user.node.login}`}
+        to={`/user/${user.node.login}`}
         className="flex flex-col flex-shrink-0 justify-center items-center self-stretch gap-2 rounded-3xl text-black bg-primary w-20 md:w-32 text-base md:text-xl"
       >
         <svg

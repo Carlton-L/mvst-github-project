@@ -19,7 +19,8 @@ import UserPage from './pages/UserPage.tsx';
 import './index.css';
 
 const host = import.meta.env.VITE_API_HOST;
-const token = import.meta.env.VITE_API_TOKEN;
+// const token = import.meta.env.VITE_API_TOKEN;
+const token = process.env.VITE_API_TOKEN;
 
 const authLink = setContext((_, { headers }) => {
   return {
@@ -60,18 +61,17 @@ const router = createBrowserRouter([
   {
     element: <Root />,
     errorElement: <ErrorPage />,
-    path: '/mvst-github-project/',
     children: [
       {
-        path: '/mvst-github-project/',
+        path: '/',
         element: <Home />,
       },
       {
-        path: '/mvst-github-project/search/:query/:page?',
+        path: '/search/:query/:page?',
         element: <SearchResults />,
       },
       {
-        path: '/mvst-github-project/user/:id',
+        path: '/user/:id',
         element: <UserPage />,
       },
     ],
