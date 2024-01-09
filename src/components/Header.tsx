@@ -8,7 +8,7 @@ import UserSearchField from './UserSearchField';
 const Header = (): React.JSX.Element => {
   return (
     <header className="border-b border-white p-4 flex gap-5 justify-between items-center">
-      <Link to="/mvst-github-project/">
+      <Link to="/">
         <svg
           width="48"
           height="48"
