@@ -1,45 +1,36 @@
-# MVST Github User Repository Browser
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-GitHub user search utility and repository browser - search for a user and filter through their repositories by search query and/or primary language.
+## Getting Started
 
-## How to Run
+First, run the development server:
 
-`npm install`
-`npm run dev`
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-### You will need to un-comment the following line in `.env` and replace with your own personal access token:
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-`VITE_API_TOKEN=<YOUR PERSONAL ACCESS TOKEN>`
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-Note that your personal access token does not require any permissions.
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## :space_invader: Tech Stack
+## Learn More
 
-<details open>
-  <summary>Frontend</summary>
-  <ul>
-    <li><a href="https://reactjs.org/">React.js / Javascript</a></li>
-    <li><a href="https://emotion.sh/">TailwindCSS / CSS Library</a></li>
-    <li><a href="https://www.typescriptlang.org/">TypeScript</a></li>
-    <li><a href="https://www.apollographql.com/">Apollo / GraphQL</a></li>
-    <li><a href="https://www.figma.com/">Figma / UI/UX Prototyping</a></li>
-  </ul>
-</details>
+To learn more about Next.js, take a look at the following resources:
 
-## Future Improvements
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-1. Github user login - currently the app uses my own personal access token
-2. Testing - there is currently no testing library
-3. Storybook - Storybook can be used for component library
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Bugs and TODOs
+## Deploy on Vercel
 
-1. Add GraphQL types
-2. Handle error case for Organization returned instead of User from search query
-3. Update navigatePage function in SearchResults.tsx to use cursor based reverse pagination
-4. Fix Url for user webpage in UserPage.tsx for cases where url does not include "https://"
-5. Fix repository count including both public and private repositories but repository browser displays only public repositories
-6. Create components for repository search field and language filter
-7. Create type for socialProviderIcon.tsx
-8. Add mocks for all queries in mock version of main.tsx
-9. Pagination component does not display ellipses correctly when there are only 3 pages and the user is on the first page
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
